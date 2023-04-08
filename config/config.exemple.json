@@ -1,10 +1,14 @@
 {
-    "development": {
-      "username": "root",
-      "password": null,
-      "database": "database_e_comerce",
-      "host": "127.0.0.1",
-      "dialect": "mysql"
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "database_e_comerce",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "jwt_secret": "youre_secret_key",
+    "auth": {
+      "user": "email",
+      "pass": "google_key"
     },
     "test": {
       "username": "root",
@@ -21,3 +25,4 @@
       "dialect": "mysql"
     }
   }
+}
