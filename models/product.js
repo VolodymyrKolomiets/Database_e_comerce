@@ -1,3 +1,4 @@
+////////FALTAN LAS VALIDACIONES
 'use strict';
 const {
   Model
@@ -6,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
  
     static associate(models) {
-      Product.belongsToMany(models.Category,{through:models.OrderProduct})
+      Product.belongsTo(models.Category)
+      Product.belongsToMany(models.Order ,{through:models.OrderProduct})
+
     }
   }
   Product.init({

@@ -5,6 +5,7 @@ const { jwt_secret } = require('../config/config.json')['development']
 const { Op } = Sequelize;
 
 const UserController = {
+    
     async create(req, res) {
         req.body.role = "user";
         try {
@@ -17,8 +18,8 @@ const UserController = {
         }
 
     },
-    async login(req, res) {
 
+    async login(req, res) {
         try {
             const user = await User.findOne({
                 where: {

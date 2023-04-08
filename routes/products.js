@@ -1,8 +1,15 @@
 const express = require('express');
 const ProductController = require('../controllers/ProductController');
-const { authentication, isAdmin } = require('../middelwere/authentication');
+const { authentication } = require('../middelwere/authentication');
 const router = express.Router()
 
 
-router.post('/createProduct', authentication, isAdmin, ProductController.create)
+router.post('/createProduct', authentication, ProductController.create)
+router.put('/updateProduct/:id', authentication, ProductController.update)
+router.delete('/deleteProduct/:id', authentication, ProductController.delete)
+router.get('/findProductById/:id', ProductController.getById)
+router.get('/getAll', ProductController.getAll)
+router.get('/findProductByName/:name', ProductController.searchByName)
+router.get('/findProductByPrice/:price', ProductController.filterByPrice)
+router.get('/sortProductByPrice', ProductController.sortByPrice)
 module.exports = router;
