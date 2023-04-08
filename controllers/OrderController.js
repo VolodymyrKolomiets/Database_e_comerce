@@ -1,4 +1,5 @@
-const { Order } = require('../models/index.js');
+const { Order, OrderProduct } = require('../models/index.js');
+
 
 const OrderController = {
     async create(req, res) {
@@ -11,7 +12,16 @@ const OrderController = {
         }
 
     },
-    /////////aqui van las siguentes endpoints
+
+      async getAllOrdersWithProducts(req, res) {
+        try {
+          const ordersWithProduct = await OrderProduct.findAll();
+          res.status(200).send({ ordersWithProduct });
+        } catch (error) {
+          console.error(error);
+          res.status(500).send(error);
+        }
+      },
 }
 
 module.exports = OrderController

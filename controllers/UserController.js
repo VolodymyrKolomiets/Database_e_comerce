@@ -1,4 +1,4 @@
-const { User, Token, Sequelize } = require('../models/index.js');
+const { User, OrderProduct, Order, Product, Token, Sequelize } = require('../models/index.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { jwt_secret } = require('../config/config.json')['development']
@@ -46,6 +46,23 @@ const UserController = {
             res.status(500).send(error);
         }
     },
+
+    async getUserByIdWithOrderProduct(req, res) {
+        try {
+          const { id } = req.params;
+          const user = await User.findByPk(id, { include: {
+            model: Order,
+            include: [Product]
+          } });
+          if (user) {
+            return res.status(200).send({ user });
+          }
+          throw new Error('Usuario no encontrado');
+        } catch (error) {
+          console.error(error);
+          res.status(500).send(error.message);
+        }
+      },
 
     async logout(req, res) {
         try {

@@ -46,7 +46,7 @@ const ProductController = {
           const { id } = req.params;
           const product = await Product.findByPk(id);
           if (product) {
-            return res.status(200).json({ product });
+            return res.status(200).send({ product });
           }
           throw new Error('Producto no encontrado');
         } catch (error) {
@@ -58,7 +58,7 @@ const ProductController = {
       async getAll(req, res) {
         try {
           const products = await Product.findAll({ include: [Category] });
-          res.status(200).json({ products });
+          res.status(200).send({ products });
         } catch (error) {
           console.error(error);
           res.status(500).send(error);
