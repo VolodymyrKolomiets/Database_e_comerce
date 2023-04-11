@@ -7,7 +7,7 @@ const transporter = require("../config/nodemailer");
 
 const UserController = {
 
-    async create(req, res) {
+    async create(req, res, next) {
         req.body.role = "user";
 
         try {
@@ -27,7 +27,7 @@ const UserController = {
 
         } catch (error) {
             console.error(error)
-            res.send(error)
+            next(error)
         }
     },
 

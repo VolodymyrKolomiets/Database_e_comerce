@@ -4,7 +4,8 @@ const { Order, OrderProduct } = require('../models/index.js');
 const OrderController = {
     async create(req, res) {
         try {
-            const order = await Order.create(req.body)
+            const order = await Order.create(req.body);
+           // await order.addOrder(req.body.OrderId)
             res.status(201).send({ msg: 'Order creado con exito', order })
         } catch (error) {
             console.error(error)

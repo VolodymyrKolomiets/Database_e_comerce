@@ -2,13 +2,14 @@ const { Product, Category, Sequelize } = require('../models/index.js');
 const { Op } = Sequelize;
 
 const ProductController = {
-    async create(req, res) {
+    async create(req, res, next) {
         try {
-            const product = await Product.create(req.body)
+            const product = await Product.create(req.body);
+            await product.addCategory(req.body.CategoryId);
             res.status(201).send({ msg: 'Producto creado con exito', product })
         } catch (error) {
             console.error(error)
-            res.status(500).send(error)
+            next(error)
         }
     },
 
