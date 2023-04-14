@@ -8,14 +8,36 @@ module.exports = {
       {
       name: 'John',
       surname: 'Kajovsky',
-      email: 'example@example.com',
+      email: 'example1@example.com',
       password:'123456',
       role:'user',
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      confirmed: true
+      },
+      {
+      name: 'Maria',
+      surname: 'Jimenez',
+      email: 'example2@example.com',
+      password:'123456',
+      role:'user',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      confirmed: true
+      },
+      {
+      name: 'Juan',
+      surname: 'Martinez',
+      email: 'example3@example.com',
+      password:'123456',
+      role:'user',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      confirmed: true
       }
       ])
   },
+    // sequelize db:seed:all
 
   async down (queryInterface, Sequelize) {
     /**

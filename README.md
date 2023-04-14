@@ -73,7 +73,7 @@ const User = sequelize.define(
 module.exports = User;
 ``
 
-# Luego con el siguente comando ya se crearian las tablas en la base de datos y los modelos en la carpeta de _models_
+# Luego con el siguente comando ya se crearian las tablas en la base de datos 
 
 **sequelize db:migrate**
 

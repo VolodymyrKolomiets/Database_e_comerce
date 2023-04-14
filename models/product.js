@@ -1,4 +1,3 @@
-////////FALTAN LAS VALIDACIONES
 'use strict';
 const {
   Model

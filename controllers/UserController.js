@@ -1,4 +1,4 @@
-const { User, OrderProduct, Order, Product, Token, Sequelize } = require('../models/index.js');
+const { User, Order, Product, Token, Sequelize } = require('../models/index.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { jwt_secret } = require('../config/config.json')['development']
@@ -31,7 +31,7 @@ const UserController = {
         }
     },
 
-    async login(req, res) {
+    async login(req, res, next) {
         try {
             const user = await User.findOne({
                 where: {
@@ -59,11 +59,11 @@ const UserController = {
         }
         catch (error) {
             console.log(error);
-            res.status(500).send(error);
+            next(error);
         }
     },
 
-    async getUserByIdWithOrderProduct(req, res) {
+    async getUserByIdWithOrderProduct(req, res, next) {
         try {
             const { id } = req.params;
             const user = await User.findByPk(id, {
@@ -78,11 +78,11 @@ const UserController = {
             throw new Error('Usuario no encontrado');
         } catch (error) {
             console.error(error);
-            res.status(500).send(error.message);
+            next(error);
         }
     },
 
-    async logout(req, res) {
+    async logout(req, res, next) {
         try {
             await Token.destroy({
                 where: {
@@ -93,12 +93,12 @@ const UserController = {
             res.send({ message: 'Desconectado con éxito' })
         } catch (error) {
             console.log(error)
-            res.status(500).send({ message: 'hubo un problema al tratar de desconectarte' })
+           // res.status(500).send({ message: 'hubo un problema al tratar de desconectarte' })
             next(error);
         }
     },
 
-    async confirm(req, res) {
+    async confirm(req, res, next) {
         try {
             const token = req.params.emailToken
             const payload = jwt.verify(token, jwt_secret)
@@ -109,7 +109,8 @@ const UserController = {
             })
             res.status(201).send("Usuario confirmado con éxito");
         } catch (error) {
-            console.error(error)
+            console.error(error);
+            next(error);
         }
     }
 }
