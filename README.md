@@ -16,7 +16,8 @@ sequelize init
 ``
 
  2 Configuración de la conexión a la base de datos: Luego, necesitas configurar la conexión a la base de datos en tu aplicación. Puedes hacerlo creando un archivo de configuración, por ejemplo config.js, donde puedes especificar la información de conexión a tu base de datos MySQL, como el nombre de usuario, contraseña, host y nombre de la base de datos. Aquí hay un ejemplo de cómo puedes configurar la conexión:
-``// config.js
+```js
+// config.js
 
 module.exports = {
   development: {
@@ -31,17 +32,18 @@ module.exports = {
   },
   // Otros entornos de desarrollo o pruebas
 };
-``
+```
 Luego en consola crear la base de datos con el commando:
-``
-sequelize db:create
-``
+
+**sequelize db:create**
+
 
  3 Definición de modelos: Luego, necesitas definir tus modelos, que son representaciones de tus tablas en la base de datos. Puedes crear un archivo para cada modelo en una carpeta, por ejemplo models, y definir tus modelos utilizando las migraciones  de Sequelize. Aquí hay un ejemplo de cómo puedes definir un modelo para una tabla de usuarios:
 
 **sequelize model:generate --name User --attributes name:string,email:string,password:string,role:string**
 
-```// models/User.js
+```js
+// models/User.js
 
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config'); // Reemplaza con la ruta correcta a tu archivo de configuración
@@ -78,7 +80,8 @@ Luego con el siguente comando ya se crearian las tablas en la base de datos
 **sequelize db:migrate**
 
 4 Sincronización de modelos con la base de datos: Luego de definir tus modelos, necesitas sincronizarlos con la base de datos para que se creen las tablas correspondientes. Puedes hacerlo en la carpeta de rutas de tu aplicación:
-```
+
+```js
 const express = require('express')
 const UserController = require('../controllers/UserController')
 const { authentication } = require('../middlewares/authentication')
@@ -94,7 +97,8 @@ router.get("/confirm/:emailToken,", UserController.confirm)
 module.exports = router;
 ```
 **Creando los endpoints necesarios en la carpeta _controllers_**
-```
+
+```js
 const { User, OrderProduct, Order, Product, Token, Sequelize } = require('../models/index.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
