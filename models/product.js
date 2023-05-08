@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    images: {
+      type: DataTypes.STRING
+    },
     CategoryId: DataTypes.INTEGER
   }, {
     sequelize,
