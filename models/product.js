@@ -30,6 +30,15 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    // description: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   validate: {
+    //     notNull: {
+    //       msg: "Por favor escriba una breve descripcion del producto",
+    //     },
+    //   },
+    // },
     images: {
       type: DataTypes.STRING
     },
