@@ -8,7 +8,7 @@ const transporter = require("../config/nodemailer");
 const UserController = {
 
     async create(req, res, next) {
-        req.body.role = "user";
+        //req.body.role = "user" // || "admin"; no funciona! prq le asignamos el valor directamente, a pesar de indicarlo en el model, no se puede cambiar indicandolo en el endpoint"postman" intentado de cambiarlo en el postaman!!!!!!!!!!
 
         try {
             const password = await bcrypt.hash(req.body.password, 10)

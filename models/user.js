@@ -49,7 +49,10 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    role: DataTypes.STRING,
+    role: {
+      type: DataTypes.STRING,
+      defaultValue: 'user'// el valor de "role" por defecto es user
+    },
     confirmed: DataTypes.BOOLEAN
   }, {
     sequelize,
