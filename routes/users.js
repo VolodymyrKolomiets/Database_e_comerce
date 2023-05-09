@@ -2,12 +2,11 @@ const express = require('express')
 const UserController = require('../controllers/UserController')
 const { authentication, isAdmin } = require('../middlewares/authentication')
 const router = express.Router()
-const { typeError } = require('../middlewares/errors')
 
-router.post('/createUser', typeError, UserController.create)
-router.post("/login", typeError, UserController.login)
-router.get("/findUserByIdWithOrdersProducts/:id", authentication, isAdmin, typeError, UserController.getUserByIdWithOrderProduct)
-router.delete("/logout/:id", authentication, typeError, UserController.logout)
-router.get("/confirm/:emailToken,", typeError, UserController.confirm)
+router.post('/createUser',  UserController.create)
+router.post("/login",  UserController.login)
+router.get("/findUserByIdWithOrdersProducts/:id", authentication, isAdmin,  UserController.getUserByIdWithOrderProduct)
+router.delete("/logout/:id", authentication,  UserController.logout)
+router.get("/confirm/:emailToken" , UserController.confirm)
 
 module.exports = router;
