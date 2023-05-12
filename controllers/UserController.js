@@ -55,7 +55,7 @@ const UserController = {
             }
             const token = jwt.sign({ id: user.id }, jwt_secret);
             Token.create({ token, UserId: user.id })
-            res.send({ token, msg: 'Bienvenido' + user.name, user });
+            res.send({ token, message: 'Bienvenido' + user.name, user });
         }
         catch (error) {
             console.log(error);
