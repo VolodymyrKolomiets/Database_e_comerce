@@ -63,17 +63,18 @@ const UserController = {
         }
     },
 
-    async getUserByIdWithOrderProduct(req, res, next) {
+
+
+    async getUserInfoById(req, res, next) {
         try {
-            const { id } = req.params;
-            const user = await User.findByPk(id, {
+            const user = await User.findByPk(req.user.id, {
                 include: {
                     model: Order,
                     include: [Product]
                 }
             });
             if (user) {
-                return res.status(200).send({ user });
+                return res.status(200).send( user );
             }
             throw new Error('Usuario no encontrado');
         } catch (error) {
@@ -90,7 +91,7 @@ const UserController = {
                     { token: req.headers.authorization }]
                 }
             });
-            res.send({ message: 'Desconectado con éxito' })
+            res.send({ logoutMessage: 'Desconectado con éxito' })
         } catch (error) {
             console.log(error)
            // res.status(500).send({ message: 'hubo un problema al tratar de desconectarte' })

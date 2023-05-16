@@ -4,7 +4,7 @@ const { Op } = Sequelize;
 const ProductController = {
     async create(req, res, next) {
         try {
-            const product = await Product.create(req.body);
+            const product = await Product.create({...req.body, images:req.file.filename});
             res.status(201).send({ msg: 'Producto creado con exito', product })
         } catch (error) {
             console.error(error)
